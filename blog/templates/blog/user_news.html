@@ -1,0 +1,61 @@
+{% extends 'wrapper.html' %}
+
+
+{% block title %}
+ Все статьи автора "{{ view.kwargs.username }}"
+{% endblock %}
+
+{% block content %}
+  <h2 class='mb-3'>Все статьи автора "{{ view.kwargs.username }}"</h2>
+  <h4 class='mb-3'>Количество статей: {{ page_obj.paginator.count }}</h4>
+  {% for post in news %}
+  <div class="alert alert-light">
+    <h2>{{ post.title }}</h2>
+    <p>{{ post.text|truncatewords:30 }}</p>
+    <div class="row">
+      <div>
+        <img class='user_image' src="{{ post.author.profile.img.url }}">
+      </div>
+      <div class="row">
+        <div class='mt-2 col-8'>
+          <span class='text-muted'>{{ post.date|date:"d E Y в H:i" }}</span>
+          <p><b>Автор: </b><a href='{% url "user-news" post.author %}'>{{ post.author }}</a></p>
+        </div>
+        <div class="col-4 mt-3">
+          <a class='btn btn-outline-warning' href="{% url 'news-detail' post.id %}">Читать</a>
+        </div>
+      </div>
+    </div>
+  </div>
+  {% endfor %}
+  {% if is_paginated %}
+    {% if page_obj.has_previous %}
+      <a href="?page=1" class='btn btn-outline-warning'>Начало</a>
+      <a href="?page={{ page_obj.previous_page_number }}" class='btn btn-outline-warning'>Предыдущая</a>
+    {% endif %}
+    {% for num in page_obj.paginator.page_range %}
+      {% if num == page_obj.number %}
+        <button class='btn btn-warning'>{{ num }}</button>
+      {% elif num > page_obj.number|add:'-3' and num < page_obj.number|add:'3' %}
+        <a href="?page={{ num }}" class='btn btn-outline-warning'>{{ num }}</a>
+      {% endif %}
+    {% endfor %}
+    {% if page_obj.has_next %}
+      <a href="?page={{ page_obj.next_page_number }}" class='btn btn-outline-warning'>Следущая</a>
+      <a href="?page={{ page_obj.paginator.num_pages }}" class='btn btn-outline-warning'>Конец</a>
+    {% endif %}
+  {% endif %}
+{% endblock %}
+
+
+{% block aside %}
+<h3>Интересные факты</h3>
+<img src="https://images.pexels.com/photos/1927314/pexels-photo-1927314.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500" class="img-thumbnail mb-2">
+<p>Able rent long in do we. Hard do me sigh with west same lady.
+Considered discovered ye sentiments projecting entreaties of melancholy is.
+An concluded sportsman offending so provision mr education.
+An stairs as be lovers uneasy. Estate was tended te</p>
+<a href="#">
+  <button class="btn btn-warning">Просмотреть</button>
+</a>
+{% endblock %}

@@ -1,0 +1,71 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <link rel="stylesheet" href="{% static 'css/main.css' %}">
+    <title>
+      {% block title %}
+      {% endblock %}
+    </title>
+  </head>
+  <body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark mb-5 p-3">
+    <a class="navbar-brand" href="{% url 'blog-home' %}">Main</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExample09" aria-controls="navbarsExample09" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarsExample09">
+      <ul class="navbar-nav mr-auto">
+        <li class="nav-item">
+          <a class="nav-link" href="{% url 'blog-home' %}">Главная</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="{% url 'blog-contacts' %}">Контакты</a>
+        </li>
+      </ul>
+    </div>
+    <div class="navbar-nav">
+      {% if user.is_authenticated %}
+        <a href="{% url 'profile' %}" class='btn btn-outline-secondary mr-2'>Личный кабинет</a>
+        <a href="{% url 'exit' %}" class='btn btn-outline-secondary'>Выйти</a>
+      {% else %}
+        <a href="{% url 'reg' %}" class='btn btn-outline-secondary mr-2'>Регистрация</a>
+        <a href="{% url 'auth' %}" class='btn btn-outline-secondary'>Войти</a>
+      {% endif %}
+    </div>
+  </nav>
+  <main class="container">
+    <div class="row">
+      <div class="col-md-8">
+        {% if messages %}
+          {% for message in messages %}
+            <div class="alert alert-success">
+              {{ message }}
+            </div>
+          {% endfor %}
+        {% endif %}
+        {% block content %}
+        {% endblock %}
+      </div>
+      <aside class="col-md-4">
+        <div class="p-3">
+          {% block aside %}
+
+          {% endblock %}
+        </div>
+      </aside>
+    </div>
+  </main>
+  <footer>
+  <div class="container">
+    <p class="float-right">
+      <a href="#">Наверх</a>
+    </p>
+    <p>Album example is © Bootstrap, but please download and customize it for yourself!</p>
+    <p>Первый раз на сайте? <a href="{% url 'reg' %}">Зарегестрироваться</a> or read our <a href="{% url 'blog-contacts' %}">Связь с нами</a>.</p>
+  </div>
+</footer>
+  </body>
+</html>

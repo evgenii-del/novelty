@@ -1,0 +1,50 @@
+{% extends 'wrapper.html' %}
+
+
+{% block title %}
+ Контакты
+{% endblock %}
+
+{% block content %}
+<div class="form-section">
+  <form action="{% url 'feedback-view' %}" method="POST">
+    {% csrf_token %}
+    <div class="form-group">
+      <label for="exampleInputName1">Ваше имя:</label>
+      <input name="name" type="text" class="form-control" id="exampleInputName1">
+    </div>
+    <div class="form-group">
+      <label for="exampleInputEmail1">Ваша почта:</label>
+      <input name="email" type="email" class="form-control" id="exampleInputEmail1">
+    </div>
+    <div class="form-group">
+      <label for="exampleInputPhone1">Ваш номер:</label>
+      <input name="phone" type="text" class="form-control" id="exampleInputPhone1">
+    </div>
+    <div class="form-group">
+      <label for="exampleFormControlTextarea1">Отзыв:</label>
+      <textarea name="description" class="form-control" id="exampleFormControlTextarea1" rows="5"></textarea>
+      <small id="exampleFormControlTextarea1" class="form-text text-muted">Коротко опишите вашу проблему</small>
+    </div>
+    <button type="submit" class="btn btn-warning">Submit</button>
+  </form>
+</div>
+{% endblock %}
+
+{% block aside %}
+<h5>Поиск</h5>
+<form style='display: flex; justify-content:space-between;' class="form-inline" action="{% url 'blog-home' %}">
+  <input style='width: 70%' class="form-control" type="search" placeholder="Текст..." aria-label="Search" name="search">
+  <button style='width: 25%' class="btn btn-outline-warning" type="submit">Найти</button>
+</form>
+<hr>
+<h3>Интересные факты</h3>
+<img src="https://images.pexels.com/photos/1927314/pexels-photo-1927314.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500" class="img-thumbnail mb-2">
+<p>Able rent long in do we. Hard do me sigh with west same lady.
+Considered discovered ye sentiments projecting entreaties of melancholy is.
+An concluded sportsman offending so provision mr education.
+An stairs as be lovers uneasy. Estate was tended te</p>
+<a href="#">
+  <button class="btn btn-warning">Просмотреть</button>
+</a>
+{% endblock %}

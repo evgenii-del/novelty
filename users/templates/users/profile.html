@@ -1,0 +1,56 @@
+{% extends 'wrapper.html' %}
+{% load crispy_forms_tags %}
+
+
+{% block title %}
+ Личный кабинет
+{% endblock %}
+
+{% block content %}
+  <div class="form-section">
+    <h2>Личный кабинет {{ user.username }}</h2>
+    <div class="media text-muted pt-3 mb-5">
+      <img class='rounded mr-2' style='width: 64px; height: 64px;' src="{{ user.profile.img.url }}">
+      <p class='media-body pb-3 mb-0 lh-125 border-bottom border-gray'>
+        <strong class='d-block text-gray-dark'>@{{ user.username }}</strong>
+        <b>Email:</b> {{ user.email }}
+      </p>
+    </div>
+    {% if posts %}
+    {% for post in posts %}
+    <div class="alert alert-light">
+      <h2>{{ post.title }}</h2>
+      <p>{{ post.text|truncatewords:30 }}</p>
+      <div class="row">
+        <div>
+          <img class='user_image' src="{{ post.author.profile.img.url }}">
+        </div>
+        <div class="row">
+          <div class='mt-2 col-8'>
+            <span class='text-muted'>{{ post.date|date:"d E Y в H:i" }}</span>
+            <p><b>Автор: </b><a href='{% url "user-news" post.author %}'>{{ post.author }}</a></p>
+          </div>
+          <div class="col-4 mt-3">
+            <a class='btn btn-outline-warning' href="{% url 'news-detail' post.id %}">Читать</a>
+          </div>
+        </div>
+      </div>
+    </div>
+    {% endfor %}
+    {% else %}
+      <div style='text-align:center;' class="alert alert-light p-5">
+        <h3>Тут будут отображаться ваши посты</h3>
+        <a href="{% url 'news-create' %}" class='btn btn-outline-warning mt-4'>Добавить пост</a>
+      </div>
+    {% endif %}
+  </div>
+{% endblock %}
+
+
+{% block aside %}
+<div class="row">
+  <a href="{% url 'news-create' %}" class='btn btn-outline-warning'>Добавить статью</a>
+  <a href="{% url 'change' %}" class='btn btn-outline-warning mt-3'>Редактировать профиль</a>
+  <!-- <a href="#" class='btn btn-outline-warning mt-3'>Мои статьи</a> -->
+</div>
+{% endblock %}

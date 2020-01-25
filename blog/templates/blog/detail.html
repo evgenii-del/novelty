@@ -1,0 +1,40 @@
+{% extends 'wrapper.html' %}
+
+
+{% block title %}
+{{ object.title }}
+{% endblock %}
+
+{% block content %}
+<div class="alert alert-light">
+  <h1>{{ object.title }}</h1>
+  <p class='information'>{{ object.text|safe }}</p>
+  <div class="row">
+    <div>
+      <img class='user_image' src="{{ object.author.profile.img.url }}">
+    </div>
+    <div class='mt-2'>
+      <span class='text-muted'>{{ object.date|date:"d E Y в H:i" }}</span>
+      <p><b>Автор: </b><a href='{% url "user-news" object.author %}'>{{ object.author }}</a></p>
+    </div>
+  </div>
+  {% if object.author == user %}
+    <hr>
+    <a href="{% url 'news-delete' object.id %}" class='btn btn-outline-danger mr-2'>Удалить</a>
+    <a href="{% url 'news-update' object.id %}" class='btn btn-outline-info mr-2'>Редактировать</a>
+  {% endif %}
+</div>
+{% endblock %}
+
+
+{% block aside %}
+<h3>Интересные факты</h3>
+<img src="https://images.pexels.com/photos/1927314/pexels-photo-1927314.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500" class="img-thumbnail mb-2">
+<p>Able rent long in do we. Hard do me sigh with west same lady.
+  Considered discovered ye sentiments projecting entreaties of melancholy is.
+  An concluded sportsman offending so provision mr education.
+  An stairs as be lovers uneasy. Estate was tended te</p>
+  <a href="#">
+    <button class="btn btn-warning">Просмотреть</button>
+  </a>
+{% endblock %}
