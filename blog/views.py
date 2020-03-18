@@ -9,7 +9,7 @@ from django.views.generic import (
     DeleteView
 )
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
-from blog.models import News
+from blog.models import News, Rate
 
 class ShowNewsView(ListView):
     model = News
@@ -17,6 +17,11 @@ class ShowNewsView(ListView):
     context_object_name = 'news'
     ordering = ['-date']
     paginate_by = 10
+
+    def get_context_data(self, *args, **kwargs):
+        context = super().get_context_data(*args, **kwargs)
+        context["rate"] = Rate.objects.all()
+        return context
 
     def get_queryset(self): # новый
         query = self.request.GET.get('search','')
@@ -46,7 +51,7 @@ class UpdateNewsView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
     model = News
     template_name = 'blog/create.html'
     fields = ['title','text']
-    
+
     def form_valid(self, form):
         form.instance.author = self.request.user
         return super().form_valid(form)

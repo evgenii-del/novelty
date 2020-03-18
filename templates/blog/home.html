@@ -21,17 +21,6 @@
         <div class="align-self-center">
             <a class='btn btn-outline-warning' href="{% url 'news-detail' post.id %}">Читать</a>
         </div>
-        <!-- <div>
-
-        </div>
-        <div class="row">
-            <div class='mt-2 col-8'>
-
-            </div>
-            <div class="col-4 mt-3">
-
-            </div>
-        </div> -->
     </div>
 </div>
 {% endfor %}
@@ -40,13 +29,20 @@
 
 {% block aside %}
 {% include 'include/search.html' %}
-<h3>Интересные факты</h3>
-<img src="https://images.pexels.com/photos/1927314/pexels-photo-1927314.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500" class="img-thumbnail mb-2">
-<p>Able rent long in do we. Hard do me sigh with west same lady.
-    Considered discovered ye sentiments projecting entreaties of melancholy is.
-    An concluded sportsman offending so provision mr education.
-    An stairs as be lovers uneasy. Estate was tended te</p>
-    <a href="#">
-        <button class="btn btn-warning">Просмотреть</button>
-    </a>
-    {% endblock %}
+<table class='table table-bordered'>
+    <thead class="thead-dark">
+    <tr>
+      <th scope="col">Валюта</th>
+      <th scope="col">НБУ</th>
+    </tr>
+  </thead>
+  <tbody>
+      {% for r in rate %}
+      <tr class='tr-hover'>
+        <td>{{ r.name }}</td>
+        <td>{{ r.cours }}</td>
+      </tr>
+      {% endfor %}
+  </tbody>
+</table>
+{% endblock %}

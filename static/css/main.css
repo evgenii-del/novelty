@@ -45,6 +45,9 @@ aside img {
 #cke_id_text {
     width: 100%!important;
 }
+.tr-hover:hover {
+    background-color: #fafafa;
+}
 footer {
     padding: 30px;
     background: #333a41;
