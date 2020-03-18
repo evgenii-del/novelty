@@ -8,6 +8,7 @@ from django.conf.urls.static import static
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path('ckeditor/', include('ckeditor_uploader.urls')),
     path('registration/', userViews.register, name='reg'),
     path('authentication/', authViews.LoginView.as_view(template_name='users/authentication.html'), name='auth'),
     path('exit/', authViews.LogoutView.as_view(template_name='users/exit.html'), name='exit'),

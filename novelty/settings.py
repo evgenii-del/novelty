@@ -29,6 +29,8 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'crispy_forms',
+    'ckeditor_uploader',
+    'ckeditor',
 ]
 
 MIDDLEWARE = [
@@ -116,6 +118,8 @@ STATICFILES_DIRS = [
     os.path.join(BASE_DIR, 'static')
 ]
 
+# STATIC_ROOT = os.path.join(BASE_DIR, 'static')
+
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
 
 LOGIN_REDIRECT_URL = 'blog-home'
@@ -124,6 +128,10 @@ LOGIN_URL = 'auth'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 MEDIA_URL = '/media/'
 
+# ckeditor
+CKEDITOR_UPLOAD_PATH = "uploads/"
+
+# Email
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_PORT = 587

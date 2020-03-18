@@ -1,0 +1,10 @@
+{% load news_tag %}
+
+{% get_news as news %}
+{% for n in news %}
+    <div class="alert alert-light">
+      <h5>{{ n.title }}</h5>
+      <p>{{ n.text|truncatewords:15 }}</p>
+      <a class='btn btn-outline-warning' style="width:100%" href="{% url 'news-detail' n.id %}">Читать</a>
+    </div>
+{% endfor %}

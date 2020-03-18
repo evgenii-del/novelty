@@ -1,0 +1,29 @@
+{% extends 'wrapper.html' %}
+{% load crispy_forms_tags %}
+
+
+{% block title %}
+ Личный кабинет
+{% endblock %}
+
+{% block content %}
+  <div class="form-section">
+    <h4>Изменить данные про пользователя</h4>
+    <form method="POST" enctype="multipart/form-data">
+      {% csrf_token %}
+      {{ update_user|crispy }}
+      <hr>
+      {{ img_profile }}
+      <div class="mt-3">
+        <button class="btn btn-outline-warning" type="submit">Обновить</button>
+      </div>
+    </form>
+  </div>
+{% endblock %}
+
+
+{% block aside %}
+<div>
+    {% include 'include/last_news.html' %}
+</div>
+{% endblock %}

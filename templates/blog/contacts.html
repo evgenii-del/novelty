@@ -1,0 +1,35 @@
+{% extends 'wrapper.html' %}
+
+{% block title %}
+ Контакты
+{% endblock %}
+
+{% block content %}
+<div class="form-section">
+  <form action="{% url 'feedback-view' %}" method="POST">
+    {% csrf_token %}
+    <div class="form-group">
+      <label for="exampleInputName1">Ваше имя:</label>
+      <input name="name" type="text" class="form-control" id="exampleInputName1">
+    </div>
+    <div class="form-group">
+      <label for="exampleInputEmail1">Ваша почта:</label>
+      <input name="email" type="email" class="form-control" id="exampleInputEmail1">
+    </div>
+    <div class="form-group">
+      <label for="exampleInputPhone1">Ваш номер:</label>
+      <input name="phone" type="text" class="form-control" id="exampleInputPhone1">
+    </div>
+    <div class="form-group">
+      <label for="exampleFormControlTextarea1">Отзыв:</label>
+      <textarea name="description" class="form-control" id="exampleFormControlTextarea1" rows="5"></textarea>
+      <small id="exampleFormControlTextarea1" class="form-text text-muted">Коротко опишите вашу проблему</small>
+    </div>
+    <button type="submit" class="btn btn-warning">Submit</button>
+  </form>
+</div>
+{% endblock %}
+
+{% block aside %}
+    {% include 'include/last_news.html' %}
+{% endblock %}

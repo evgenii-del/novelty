@@ -9,12 +9,10 @@ from django.views.generic import (
     DeleteView
 )
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
-from .models import News
-
+from blog.models import News
 
 class ShowNewsView(ListView):
     model = News
-
     template_name = 'blog/home.html'
     context_object_name = 'news'
     ordering = ['-date']
@@ -31,7 +29,6 @@ class ShowNewsView(ListView):
 
 class UserAllNewsView(ListView):
     model = News
-
     template_name = 'blog/user_news.html'
     context_object_name = 'news'
     paginate_by = 10
@@ -43,15 +40,13 @@ class UserAllNewsView(ListView):
 
 class NewsDetailView(DetailView):
     model = News
-
     template_name = 'blog/detail.html'
 
 class UpdateNewsView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
     model = News
-
     template_name = 'blog/create.html'
     fields = ['title','text']
-
+    
     def form_valid(self, form):
         form.instance.author = self.request.user
         return super().form_valid(form)
@@ -64,7 +59,6 @@ class UpdateNewsView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
 
 class CreateNewsView(LoginRequiredMixin, CreateView):
     model = News
-
     template_name = 'blog/create.html'
     fields = ['title','text']
 
@@ -74,7 +68,6 @@ class CreateNewsView(LoginRequiredMixin, CreateView):
 
 class DeleteNewsView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
     model = News
-
     template_name = 'blog/delete.html'
     success_url = '/'
 
