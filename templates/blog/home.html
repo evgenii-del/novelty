@@ -18,8 +18,14 @@
                 <p><b>Автор: </b><a href='{% url "user-news" post.author %}'>{{ post.author }}</a></p>
             </div>
         </div>
-        <div class="align-self-center">
-            <a class='btn btn-outline-warning' href="{% url 'news-detail' post.id %}">Читать</a>
+        <div class="row align-items-center">
+            <div class="mr-3">
+                <i class="far fa-eye"></i>
+                {{ post.count }}
+            </div>
+            <div class="mr-3">
+                <a class='btn btn-outline-warning' href="{% url 'news-detail' post.id %}">Читать</a>
+            </div>
         </div>
     </div>
 </div>
@@ -45,4 +51,12 @@
       {% endfor %}
   </tbody>
 </table>
+<h3>Популярное: </h3>
+{% for n in popular %}
+    <div class="alert alert-light">
+      <h5>{{ n.title }}</h5>
+      <p>{{ n.text|truncatewords:15 }}</p>
+      <a class='btn btn-outline-warning' style="width:100%" href="{% url 'news-detail' n.id %}">Читать</a>
+    </div>
+{% endfor %}
 {% endblock %}

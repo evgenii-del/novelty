@@ -20,8 +20,10 @@ def register(request):
 
 @login_required
 def profile(request):
+    posts = News.objects.filter(author=request.user)
     context = {
-        'posts': News.objects.filter(author=request.user)
+        'posts': posts,
+        'count_of_posts': len(posts),
     }
 
     return render(request, 'users/profile.html', context)

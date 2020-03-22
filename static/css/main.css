@@ -42,6 +42,9 @@ aside img {
     margin-right: 10px;
     margin-left: 20px;
 }
+.profile-count-of-posts {
+    font-size: 30px;
+}
 #cke_id_text {
     width: 100%!important;
 }

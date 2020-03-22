@@ -1,6 +1,6 @@
 from django.shortcuts import render, get_object_or_404
 from django.contrib.auth.models import User
-from django.db.models import Q
+from django.db.models import Q, F
 from django.views.generic import (
     ListView,
     DetailView,
@@ -20,6 +20,7 @@ class ShowNewsView(ListView):
 
     def get_context_data(self, *args, **kwargs):
         context = super().get_context_data(*args, **kwargs)
+        context["popular"] = News.objects.order_by("-count")[:7]
         context["rate"] = Rate.objects.all()
         return context
 
@@ -42,10 +43,10 @@ class UserAllNewsView(ListView):
         user = get_object_or_404(User, username=self.kwargs.get('username'))
         return News.objects.filter(author=user).order_by('-date')
 
-
-class NewsDetailView(DetailView):
-    model = News
-    template_name = 'blog/detail.html'
+def post_detail(request, pk):
+    post = get_object_or_404(News, pk=pk)
+    News.objects.filter(pk=pk).update(count=F('count')+1)
+    return render(request, 'blog/detail.html', {'object': post})
 
 class UpdateNewsView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
     model = News

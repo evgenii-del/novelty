@@ -131,18 +131,17 @@ MEDIA_URL = '/media/'
 # ckeditor
 CKEDITOR_UPLOAD_PATH = "uploads/"
 
+from novelty.secret import EMAIL_PASSWORD, EMAIL
+
 # Email
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_PORT = 587
 EMAIL_USE_TLS = True
-EMAIL_HOST_USER = 'zkhasanovv@gmail.com'
-EMAIL_HOST_PASSWORD = 'z2001khasanov'
+EMAIL_HOST_USER = EMAIL
+EMAIL_HOST_PASSWORD = EMAIL_PASSWORD
 
 # Redis
-# REDIS_HOST = '0.0.0.0'
-# REDIS_HOST = '192.168.99.100'
-# REDIS_PORT = '6379'
 CELERY_BROKER_TRANSPORT_OPTIONS = {'visibility_timeout': 3600}
 CELERY_BROKER_URL = 'redis://192.168.99.100:6379/0'
 CELERY_RESULT_BACKEND = 'redis://192.168.99.100:6379/0'
