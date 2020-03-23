@@ -11,6 +11,7 @@ class News(models.Model):
     text = RichTextUploadingField()
     date = models.DateTimeField(default=timezone.now)
     author = models.ForeignKey(User, on_delete=models.CASCADE)
+    img = models.ImageField(upload_to='images/%Y/%m/%d', blank=True)
     count = models.PositiveIntegerField(default=0)
 
     def __str__(self):
@@ -18,6 +19,15 @@ class News(models.Model):
 
     def get_absolute_url(self):
         return reverse('news-detail', kwargs={'pk': self.pk})
+
+class Review(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    post = models.ForeignKey(News, on_delete=models.CASCADE)
+    text = models.TextField()
+    date = models.DateTimeField(default=timezone.now)
+
+    def __str__(self):
+        return self.text
 
 class Rate(models.Model):
     name = models.CharField(max_length=100, unique=True)

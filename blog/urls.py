@@ -9,5 +9,6 @@ urlpatterns = [
     path('blog/<int:pk>/delete/', views.DeleteNewsView.as_view(), name='news-delete'),
     path('profile/create/', views.CreateNewsView.as_view(), name='news-create'),
     path('blog/<int:pk>/', views.post_detail, name='news-detail'),
+    path('blog/review/<int:pk>/', views.AddReview.as_view(), name='review'),
     path('contacts/', views.contacts, name='blog-contacts'),
 ]

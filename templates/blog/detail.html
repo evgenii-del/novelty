@@ -24,8 +24,32 @@
     <a href="{% url 'news-update' object.id %}" class='btn btn-outline-info mr-2'>Редактировать</a>
   {% endif %}
 </div>
+<div class="bg-white p-3 comment-div">
+    <div class="p-1">
+        <form action="{% url 'review' object.id %}" method="POST" class="d-flex align-items-center">
+            {% csrf_token %}
+            <div class="textarea-div">
+                <textarea name="text" id="exampleFormControlTextarea1" rows="2" width="100%" placeholder=""></textarea>
+            </div>
+            <div class="button-div">
+                <button class="btn">Отправить</button>
+            </div>
+        </form>
+    </div>
+    {% if object.review_set.all %}
+        <hr>
+        <div class="p-2">
+            {% for review in object.review_set.all %}
+            <div class="row align-items-center p-1">
+              <div>
+                  <a href="{% url 'user-news' review.user %}">{{ review.user }}: </a><span>{{ review.text }}</span>
+              </div>
+            </div>
+            {% endfor %}
+        </div>
+    {% endif %}
+</div>
 {% endblock %}
-
 
 {% block aside %}
 <h3>Интересные факты</h3>

@@ -1,7 +1,8 @@
-from django.shortcuts import render, get_object_or_404
+from django.shortcuts import render, get_object_or_404, redirect
 from django.contrib.auth.models import User
 from django.db.models import Q, F
 from django.views.generic import (
+    View,
     ListView,
     DetailView,
     CreateView,
@@ -10,6 +11,8 @@ from django.views.generic import (
 )
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 from blog.models import News, Rate
+from blog.forms import ReviewForm
+
 
 class ShowNewsView(ListView):
     model = News
@@ -45,13 +48,13 @@ class UserAllNewsView(ListView):
 
 def post_detail(request, pk):
     post = get_object_or_404(News, pk=pk)
-    News.objects.filter(pk=pk).update(count=F('count')+1)
+    # News.objects.filter(pk=pk).update(count=F('count')+1)
     return render(request, 'blog/detail.html', {'object': post})
 
 class UpdateNewsView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
     model = News
     template_name = 'blog/create.html'
-    fields = ['title','text']
+    fields = ['title', 'text', 'img']
 
     def form_valid(self, form):
         form.instance.author = self.request.user
@@ -66,7 +69,7 @@ class UpdateNewsView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
 class CreateNewsView(LoginRequiredMixin, CreateView):
     model = News
     template_name = 'blog/create.html'
-    fields = ['title','text']
+    fields = ['title', 'text', 'img']
 
     def form_valid(self, form):
         form.instance.author = self.request.user
@@ -82,6 +85,18 @@ class DeleteNewsView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
         if self.request.user == news.author:
             return True
         return False
+
+class AddReview(View):
+    def post(self, request, pk):
+        form = ReviewForm(request.POST)
+        post = News.objects.get(id=pk)
+        if form.is_valid():
+            form = form.save(commit=False)
+            form.post = post
+            form.user = request.user
+            form.save()
+        return redirect('/')
+
 
 def contacts(request):
     return render(request, 'blog/contacts.html')
