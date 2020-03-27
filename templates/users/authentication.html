@@ -13,11 +13,11 @@
       {% csrf_token %}
       {{ form|crispy }}
       <div class="text-right">
-          <button class="btn btn-outline-warning" type="submit">Войти</button>
+          <button class="btn btn-outline-secondary" type="submit">Войти</button>
       </div>
     </form>
     <hr>
-    <p>Забыли пароль? <a href="{% url 'pass-reset' %}">Возобновить пароль</a></p>
+    <p class="text-center">Забыли пароль? <a href="{% url 'pass-reset' %}">Возобновить пароль</a></p>
   </div>
 {% endblock %}
 

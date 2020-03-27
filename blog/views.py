@@ -48,7 +48,7 @@ class UserAllNewsView(ListView):
 
 def post_detail(request, pk):
     post = get_object_or_404(News, pk=pk)
-    # News.objects.filter(pk=pk).update(count=F('count')+1)
+    News.objects.filter(pk=pk).update(count=F('count')+1)
     return render(request, 'blog/detail.html', {'object': post})
 
 class UpdateNewsView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):

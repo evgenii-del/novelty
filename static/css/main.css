@@ -1,3 +1,6 @@
+html {
+    scroll-behavior: smooth;
+}
 body {
     background: #fafafa;
 }
@@ -85,7 +88,7 @@ aside img {
     width: 100%;
 }
 .form-section > h2 {
-    color: #b38a22;
+    color: #131313;
     margin-bottom: 10px;
 }
 .user_image {

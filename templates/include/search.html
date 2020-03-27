@@ -1,8 +1,6 @@
-<div>
-    <h5>Поиск</h5>
-    <form style='display: flex; justify-content:space-between;' class="form-inline" action="{% url 'blog-home' %}">
-        <input style='width: 70%' class="form-control" type="search" placeholder="Текст..." aria-label="Search" name="search">
-        <button style='width: 25%' class="btn btn-outline-warning" type="submit">Найти</button>
+<div class="mr-2">
+    <form class="form-inline" action="{% url 'blog-home' %}">
+        <input class="form-control mr-2" type="search" placeholder="Поиск..." name="search">
+        <button class="btn btn-outline-secondary" type="submit">Найти</button>
     </form>
-    <hr>
 </div>
