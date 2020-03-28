@@ -1,0 +1,280 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2020-03-28 15:47+0200\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#: .\novelty\settings.py:116
+msgid "Russia"
+msgstr ""
+
+#: .\novelty\settings.py:117
+msgid "English"
+msgstr ""
+
+#: .\templates\blog\contacts.html:5 .\templates\wrapper.html:23
+msgid "Контакты"
+msgstr "Contacts"
+
+#: .\templates\blog\contacts.html:13
+msgid "Ваше имя"
+msgstr "Your name"
+
+#: .\templates\blog\contacts.html:17
+msgid "Ваша почта"
+msgstr "Your email"
+
+#: .\templates\blog\contacts.html:21
+msgid "Ваш номер"
+msgstr "Your number"
+
+#: .\templates\blog\contacts.html:25
+msgid "Отзыв"
+msgstr "Review"
+
+#: .\templates\blog\contacts.html:27
+msgid "Коротко опишите свою проблему"
+msgstr "Briefly describe your problem"
+
+#: .\templates\blog\contacts.html:30 .\templates\blog\detail.html:36
+#: .\templates\users\pass_reset.html:16
+#: .\templates\users\password_reset_confirm.html:16
+#: .\templates\users\registration.html:17
+msgid "Отправить"
+msgstr "Send"
+
+#: .\templates\blog\create.html:8 .\templates\blog\create.html:13
+msgid "Добавление новой статьи"
+msgstr "Adding a new article"
+
+#: .\templates\blog\create.html:18
+msgid "Добавить"
+msgstr "Add"
+
+#: .\templates\blog\delete.html:7 .\templates\blog\delete.html:12
+msgid "Удаление статьи"
+msgstr "Delete"
+
+#: .\templates\blog\delete.html:16
+msgid "Удалить статью"
+msgstr "Delete"
+
+#: .\templates\blog\delete.html:18
+msgid "Вернуться на главную страницу"
+msgstr "Back to the main page"
+
+#: .\templates\blog\detail.html:24
+msgid "Удалить"
+msgstr "Delete"
+
+#: .\templates\blog\detail.html:25
+msgid "Редактировать"
+msgstr "Edit"
+
+#: .\templates\blog\home.html:6 .\templates\wrapper.html:20
+msgid "Главная"
+msgstr "Main"
+
+#: .\templates\wrapper.html:80
+msgid "Выбрать"
+msgstr "Choose"
+
+#: .\templates\blog\home.html:27 .\templates\users\profile.html:36
+msgid "Автор"
+msgstr "Author"
+
+#: .\templates\blog\home.html:35 .\templates\blog\home.html:58
+#: .\templates\blog\home.html:90 .\templates\blog\user_news.html:30
+#: .\templates\include\last_news.html:9 .\templates\users\profile.html:39
+msgid "Читать"
+msgstr "Read"
+
+#: .\templates\blog\home.html:49 .\templates\blog\user_news.html:21
+msgid "Автор:"
+msgstr "Author"
+
+#: .\templates\blog\home.html:72
+msgid "Валюта"
+msgstr "Currency"
+
+#: .\templates\blog\home.html:73
+msgid "НБУ"
+msgstr "NBU"
+
+#: .\templates\blog\home.html:85
+msgid "Популярное"
+msgstr "Popular"
+
+#: .\templates\blog\user_news.html:6 .\templates\blog\user_news.html:10
+msgid "Все статьи автора"
+msgstr "All articles of the author"
+
+#: .\templates\blog\user_news.html:11
+msgid "Количество статей"
+msgstr "Count of the articles"
+
+#: .\templates\include\pagination.html:5
+msgid "Начало"
+msgstr "Start"
+
+#: .\templates\include\pagination.html:6
+msgid "Предыдущая"
+msgstr "Previous"
+
+#: .\templates\include\pagination.html:16
+msgid "Следущая"
+msgstr "Next"
+
+#: .\templates\include\pagination.html:17
+msgid "Конец"
+msgstr "Last"
+
+#: .\templates\include\search.html:5
+msgid "Найти"
+msgstr "Search"
+
+#: .\templates\users\authentication.html:6
+#: .\templates\users\authentication.html:11
+msgid "Авторизация на сайте"
+msgstr "Sign in"
+
+#: .\templates\users\authentication.html:16
+#: .\templates\users\registration.html:21 .\templates\wrapper.html:36
+msgid "Войти"
+msgstr "Sign in"
+
+#: .\templates\users\authentication.html:20
+msgid "Забыли пароль"
+msgstr "Forgot your password"
+
+#: .\templates\users\authentication.html:20
+msgid "Восстановить пароль"
+msgstr "Restore password"
+
+#: .\templates\users\exit.html:7
+msgid "Выход"
+msgstr "Sign out"
+
+#: .\templates\users\exit.html:12
+msgid "Вы вышли с аккаунта"
+msgstr "You are signed out"
+
+#: .\templates\users\exit.html:13
+msgid "Войти снова"
+msgstr "Login again"
+
+#: .\templates\users\pass_reset.html:7
+msgid "Восстоновление пароля"
+msgstr "Restore password"
+
+#: .\templates\users\pass_reset.html:12
+msgid "Запрос нового пароля"
+msgstr "Request a new password"
+
+#: .\templates\users\password_reset_complete.html:7
+msgid "Пароль обновлен"
+msgstr "Password is changed"
+
+#: .\templates\users\password_reset_complete.html:12
+msgid "Вы успешно обновили пароль"
+msgstr "You have successfully updated your password"
+
+#: .\templates\users\password_reset_complete.html:13
+msgid "Ваш пароль заменен на новый"
+msgstr "Your password has been changed to a new one."
+
+#: .\templates\users\password_reset_confirm.html:7
+#: .\templates\users\password_reset_confirm.html:12
+msgid "Запросить новый пароль"
+msgstr "Request a new password"
+
+#: .\templates\users\password_reset_done.html:7
+msgid "Запрос отправлен"
+msgstr "Request has been sent"
+
+#: .\templates\users\password_reset_done.html:12
+msgid "Вы успешно отправили запрос"
+msgstr "You have successfully submitted a request"
+
+#: .\templates\users\password_reset_done.html:13
+msgid "Мы отправили ваш новый пароль на почту"
+msgstr "We have sent your new password in the mail"
+
+#: .\templates\users\profile.html:6 .\templates\users\profile.html:11
+#: .\templates\users\profile_change.html:7 .\templates\wrapper.html:32
+msgid "Личный кабинет"
+msgstr "Profile"
+
+#: .\templates\users\profile.html:47
+msgid "Тут будут отображаться ваши посты"
+msgstr "Your posts will be displayed here."
+
+#: .\templates\users\profile.html:48
+msgid "Добавить пост"
+msgstr "Add post"
+
+#: .\templates\users\profile.html:57
+msgid "Добавить статью"
+msgstr "Add post"
+
+#: .\templates\users\profile.html:58
+msgid "Редактировать профиль"
+msgstr "Edit profile"
+
+#: .\templates\users\profile.html:59
+msgid "Избранное"
+msgstr "Favotite"
+
+#: .\templates\users\profile_change.html:12
+msgid "Изменить данные пользователя"
+msgstr "Change user data"
+
+#: .\templates\users\profile_change.html:19
+msgid "Обновить"
+msgstr "Change"
+
+#: .\templates\users\registration.html:7 .\templates\users\registration.html:12
+msgid "Регистрация на сайте"
+msgstr "Registration on the site"
+
+#: .\templates\users\registration.html:21
+msgid "Уже зарегистрированы"
+msgstr "Already registered"
+
+#: .\templates\wrapper.html:33
+msgid "Выйти"
+msgstr "Sign out"
+
+#: .\templates\wrapper.html:35 .\templates\wrapper.html:83
+msgid "Регистрация"
+msgstr "Sign up"
+
+#: .\templates\wrapper.html:64
+msgid "Наверх"
+msgstr "Up"
+
+#: .\templates\wrapper.html:83
+msgid "Первый раз на сайте"
+msgstr "First time on the site"
+
+#: .\templates\wrapper.html:83
+msgid "или"
+msgstr "or"
+
+#: .\templates\wrapper.html:83
+msgid "Связь с нами"
+msgstr "Contact with us"

@@ -1,15 +1,16 @@
 {% extends 'wrapper.html' %}
 {% load crispy_forms_tags %}
+{% load i18n %}
 
 
 {% block title %}
- Выход
+ {% trans 'Выход' %}
 {% endblock %}
 
 {% block content %}
   <div class="form-section">
-    <h2>Вы вышли с аккаунта</h2>
-    <a href="{% url 'auth' %}">Войти в личный кабинет снова</a>
+    <h2>{% trans 'Вы вышли с аккаунта' %}</h2>
+    <a href="{% url 'auth' %}">{% trans 'Войти снова' %}</a>
   </div>
 {% endblock %}
 

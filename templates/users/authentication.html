@@ -1,23 +1,23 @@
 {% extends 'wrapper.html' %}
 {% load crispy_forms_tags %}
-
+{% load i18n %}
 
 {% block title %}
- Авторизация
+ {% trans 'Авторизация на сайте' %}
 {% endblock %}
 
 {% block content %}
   <div class="form-section">
-    <h2>Авторизация на сайте</h2>
+    <h2>{% trans 'Авторизация на сайте' %}</h2>
     <form method="POST">
       {% csrf_token %}
       {{ form|crispy }}
       <div class="text-right">
-          <button class="btn btn-outline-secondary" type="submit">Войти</button>
+          <button class="btn btn-outline-secondary" type="submit">{% trans 'Войти' %}</button>
       </div>
     </form>
     <hr>
-    <p class="text-center">Забыли пароль? <a href="{% url 'pass-reset' %}">Возобновить пароль</a></p>
+    <p class="text-center">{% trans 'Забыли пароль' %}? <a href="{% url 'pass-reset' %}">{% trans 'Восстановить пароль' %}</a></p>
   </div>
 {% endblock %}
 

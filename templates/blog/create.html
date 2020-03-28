@@ -1,20 +1,21 @@
 {% extends 'wrapper.html' %}
 {% load crispy_forms_tags %}
 {% load static %}
+{% load i18n %}
 
 
 {% block title %}
-Добавление новой статьи
+{% trans 'Добавление новой статьи' %}
 {% endblock %}
 
 {% block content %}
   <div class="form-section">
-    <h2>Добавление новой статьи</h2>
+    <h2>{% trans 'Добавление новой статьи' %}</h2>
     <form method="POST">
       {% csrf_token %}
       {{ form|crispy }}
       <div class="text-right">
-          <button class="btn btn-outline-secondary" type="submit">Добавить</button>
+          <button class="btn btn-outline-secondary" type="submit">{% trans 'Добавить' %}</button>
       </div>
     </form>
   </div>

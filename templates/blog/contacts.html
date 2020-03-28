@@ -1,7 +1,8 @@
 {% extends 'wrapper.html' %}
+{% load i18n %}
 
 {% block title %}
- Контакты
+{% trans 'Контакты' %}
 {% endblock %}
 
 {% block content %}
@@ -9,23 +10,25 @@
   <form action="{% url 'feedback-view' %}" method="POST">
     {% csrf_token %}
     <div class="form-group">
-      <label for="exampleInputName1">Ваше имя:</label>
+      <label for="exampleInputName1">{% trans 'Ваше имя' %}:</label>
       <input name="name" type="text" class="form-control" id="exampleInputName1">
     </div>
     <div class="form-group">
-      <label for="exampleInputEmail1">Ваша почта:</label>
+      <label for="exampleInputEmail1">{% trans 'Ваша почта' %}:</label>
       <input name="email" type="email" class="form-control" id="exampleInputEmail1">
     </div>
     <div class="form-group">
-      <label for="exampleInputPhone1">Ваш номер:</label>
+      <label for="exampleInputPhone1">{% trans 'Ваш номер' %}:</label>
       <input name="phone" type="text" class="form-control" id="exampleInputPhone1">
     </div>
     <div class="form-group">
-      <label for="exampleFormControlTextarea1">Отзыв:</label>
+      <label for="exampleFormControlTextarea1">{% trans 'Отзыв' %}:</label>
       <textarea name="description" class="form-control" id="exampleFormControlTextarea1" rows="5"></textarea>
-      <small id="exampleFormControlTextarea1" class="form-text text-muted">Коротко опишите вашу проблему</small>
+      <small id="exampleFormControlTextarea1" class="form-text text-muted">{% trans 'Коротко опишите свою проблему' %}</small>
     </div>
-    <button type="submit" class="btn btn-outline-secondary">Submit</button>
+    <div class="text-right">
+        <button type="submit" class="btn btn-outline-secondary">{% trans 'Отправить' %}</button>
+    </div>
   </form>
 </div>
 {% endblock %}

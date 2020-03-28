@@ -1,14 +1,14 @@
 {% extends 'wrapper.html' %}
 {% load crispy_forms_tags %}
-
+{% load i18n %}
 
 {% block title %}
- Личный кабинет
+ {% trans 'Личный кабинет' %}
 {% endblock %}
 
 {% block content %}
   <div class="form-section">
-    <h2>Личный кабинет {{ user.username }}</h2>
+    <h2>{% trans 'Личный кабинет' %} {{ user.username }}</h2>
     <div class="media text-muted pt-3 mb-3">
       <img class='rounded mr-2' style='width: 64px; height: 64px;' src="{{ user.profile.img.url }}">
       <p class='media-body pb-3 mb-0 lh-125 border-bottom border-gray'>
@@ -33,10 +33,10 @@
         <div class="row">
           <div class='mt-2 col-8'>
             <span class='text-muted'>{{ post.date|date:"d E Y в H:i" }}</span>
-            <p><b>Автор: </b><a href='{% url "user-news" post.author %}'>{{ post.author }}</a></p>
+            <p><b>{% trans 'Автор' %}: </b><a href='{% url "user-news" post.author %}'>{{ post.author }}</a></p>
           </div>
           <div class="col-4 mt-3">
-            <a class='btn btn-outline-secondary' href="{% url 'news-detail' post.id %}">Читать</a>
+            <a class='btn btn-outline-secondary' href="{% url 'news-detail' post.id %}">{% trans 'Читать' %}</a>
           </div>
         </div>
       </div>
@@ -44,8 +44,8 @@
     {% endfor %}
     {% else %}
       <div style='text-align:center;' class="alert alert-light p-5">
-        <h3>Тут будут отображаться ваши посты</h3>
-        <a href="{% url 'news-create' %}" class='btn btn-outline-secondary mt-4'>Добавить пост</a>
+        <h3>{% trans 'Тут будут отображаться ваши посты' %}</h3>
+        <a href="{% url 'news-create' %}" class='btn btn-outline-secondary mt-4'>{% trans 'Добавить пост' %}</a>
       </div>
     {% endif %}
   </div>
@@ -54,9 +54,9 @@
 
 {% block aside %}
 <div class="row">
-  <a href="{% url 'news-create' %}" class='btn btn-outline-secondary'>Добавить статью</a>
-  <a href="{% url 'change' %}" class='btn btn-outline-secondary mt-3'>Редактировать профиль</a>
-  <a href="#" class='btn btn-outline-secondary mt-3'>Избранное</a>
+  <a href="{% url 'news-create' %}" class='btn btn-outline-secondary'>{% trans 'Добавить статью' %}</a>
+  <a href="{% url 'change' %}" class='btn btn-outline-secondary mt-3'>{% trans 'Редактировать профиль' %}</a>
+  <a href="#" class='btn btn-outline-secondary mt-3'>{% trans 'Избранное' %}</a>
 </div>
 <div class="mt-3">
     {% include 'include/last_news.html' %}

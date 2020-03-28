@@ -1,10 +1,11 @@
 {% load news_tag %}
+{% load i18n %}
 
 {% get_news as news %}
 {% for n in news %}
     <div class="alert alert-light">
       <h5>{{ n.title }}</h5>
       <p>{{ n.text|truncatewords:15|safe }}</p>
-      <a class='btn btn-outline-secondary' style="width:100%" href="{% url 'news-detail' n.id %}">Читать</a>
+      <a class='btn btn-outline-secondary' style="width:100%" href="{% url 'news-detail' n.id %}">{% trans 'Читать' %}</a>
     </div>
 {% endfor %}

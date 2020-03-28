@@ -1,6 +1,7 @@
+{% load i18n %}
 <div class="mr-2">
     <form class="form-inline" action="{% url 'blog-home' %}">
         <input class="form-control mr-2" type="search" placeholder="Поиск..." name="search">
-        <button class="btn btn-outline-secondary" type="submit">Найти</button>
+        <button class="btn btn-outline-secondary" type="submit">{% trans 'Найти' %}</button>
     </form>
 </div>

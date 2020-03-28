@@ -1,8 +1,9 @@
 {% extends 'wrapper.html' %}
+{% load i18n %}
 
 
 {% block title %}
-Главная
+{% trans 'Главная' %}
 {% endblock %}
 
 {% block content %}
@@ -23,7 +24,7 @@
                 <img class='user_image' src="{{ post.author.profile.img.url }}">
                 <div class="mt-2">
                     <span class='text-muted'>{{ post.date|date:"d E Y в H:i" }}</span>
-                    <p><b>Автор: </b><a href='{% url "user-news" post.author %}'>{{ post.author }}</a></p>
+                    <p><b>{% trans 'Автор' %}: </b><a href='{% url "user-news" post.author %}'>{{ post.author }}</a></p>
                 </div>
             </div>
             <div class="d-flex align-items-center">
@@ -31,7 +32,7 @@
                     <i class="far fa-eye"></i>
                     {{ post.count }}
                 </div>
-                <a class='btn btn-secondary' href="{% url 'news-detail' post.id %}">Читать</a>
+                <a class='btn btn-secondary' href="{% url 'news-detail' post.id %}">{% trans 'Читать' %}</a>
             </div>
         </div>
     </div>
@@ -45,7 +46,7 @@
                 <img class='user_image' src="{{ post.author.profile.img.url }}">
                 <div class="mt-2">
                     <span class='text-muted'>{{ post.date|date:"d E Y в H:i" }}</span>
-                    <p><b>Автор: </b><a href='{% url "user-news" post.author %}'>{{ post.author }}</a></p>
+                    <p><b>{% trans 'Автор:' %} </b><a href='{% url "user-news" post.author %}'>{{ post.author }}</a></p>
                 </div>
             </div>
             <div class="row align-items-center">
@@ -54,7 +55,7 @@
                     {{ post.count }}
                 </div>
                 <div class="mr-3">
-                    <a class='btn btn-secondary' href="{% url 'news-detail' post.id %}">Читать</a>
+                    <a class='btn btn-secondary' href="{% url 'news-detail' post.id %}">{% trans 'Читать' %}</a>
                 </div>
             </div>
         </div>
@@ -68,8 +69,8 @@
 <table class='table table-bordered'>
     <thead class="thead-dark">
         <tr>
-            <th scope="col">Валюта</th>
-            <th scope="col">НБУ</th>
+            <th scope="col">{% trans 'Валюта' %}</th>
+            <th scope="col">{% trans 'НБУ' %}</th>
         </tr>
     </thead>
     <tbody>
@@ -81,12 +82,12 @@
         {% endfor %}
     </tbody>
 </table>
-<h3>Популярное: </h3>
+<h3>{% trans 'Популярное' %}: </h3>
 {% for n in popular %}
 <div class="alert alert-light">
     <h5>{{ n.title }}</h5>
     <p>{{ n.text|truncatewords:15|safe }}</p>
-    <a class='btn btn-outline-secondary' style="width:100%" href="{% url 'news-detail' n.id %}">Читать</a>
+    <a class='btn btn-outline-secondary' style="width:100%" href="{% url 'news-detail' n.id %}">{% trans 'Читать' %}</a>
 </div>
 {% endfor %}
 {% endblock %}

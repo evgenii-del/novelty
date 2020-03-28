@@ -1,4 +1,5 @@
 {% extends 'wrapper.html' %}
+{% load i18n %}
 
 
 {% block title %}
@@ -20,8 +21,8 @@
   </div>
   {% if object.author == user %}
     <hr>
-    <a href="{% url 'news-delete' object.id %}" class='btn btn-outline-danger mr-2'>Удалить</a>
-    <a href="{% url 'news-update' object.id %}" class='btn btn-outline-info mr-2'>Редактировать</a>
+    <a href="{% url 'news-delete' object.id %}" class='btn btn-outline-danger mr-2'>{% trans 'Удалить' %}</a>
+    <a href="{% url 'news-update' object.id %}" class='btn btn-outline-info mr-2'>{% trans 'Редактировать' %}</a>
   {% endif %}
 </div>
 <div class="bg-white p-3 comment-div">
@@ -29,10 +30,10 @@
         <form action="{% url 'review' object.id %}" method="POST" class="d-flex align-items-center">
             {% csrf_token %}
             <div class="textarea-div">
-                <textarea name="text" id="exampleFormControlTextarea1" rows="2" width="100%" placeholder=""></textarea>
+                <textarea name="text" id="exampleFormControlTextarea1" rows="2" width="100%"></textarea>
             </div>
             <div class="button-div">
-                <button class="btn">Отправить</button>
+                <button class="btn">{% trans 'Отправить' %}</button>
             </div>
         </form>
     </div>

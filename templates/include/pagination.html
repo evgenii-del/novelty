@@ -1,8 +1,9 @@
+{% load i18n %}
 <div class="text-center">
     {% if is_paginated %}
       {% if page_obj.has_previous %}
-        <a href="?page=1" class='btn btn-outline-secondary'>Начало</a>
-        <a href="?page={{ page_obj.previous_page_number }}" class='btn btn-outline-secondary'>Предыдущая</a>
+        <a href="?page=1" class='btn btn-outline-secondary'>{% trans 'Начало' %}</a>
+        <a href="?page={{ page_obj.previous_page_number }}" class='btn btn-outline-secondary'>{% trans 'Предыдущая' %}</a>
       {% endif %}
       {% for num in page_obj.paginator.page_range %}
         {% if num == page_obj.number %}
@@ -12,8 +13,8 @@
         {% endif %}
       {% endfor %}
       {% if page_obj.has_next %}
-        <a href="?page={{ page_obj.next_page_number }}" class='btn btn-outline-secondary'>Следущая</a>
-        <a href="?page={{ page_obj.paginator.num_pages }}" class='btn btn-outline-secondary'>Конец</a>
+        <a href="?page={{ page_obj.next_page_number }}" class='btn btn-outline-secondary'>{% trans 'Следущая' %}</a>
+        <a href="?page={{ page_obj.paginator.num_pages }}" class='btn btn-outline-secondary'>{% trans 'Конец' %}</a>
       {% endif %}
     {% endif %}
 </div>
