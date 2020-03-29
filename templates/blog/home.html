@@ -7,12 +7,15 @@
 {% endblock %}
 
 {% block content %}
+<div class="search-div mb-3">
+    {% include 'include/search.html' %}
+</div>
 {% for post in news %}
 
 {% if post.img %}
 <div class="d-flex card-div">
     <div class="col-4 post-image-div p-0">
-            <img src="{{ post.img.url }}">
+        <img src="{{ post.img.url }}">
     </div>
     <div class="col-8 p-3 d-flex flex-column justify-content-between">
         <div class="">
@@ -38,34 +41,38 @@
     </div>
 </div>
 {% else %}
-    <div class="alert alert-light">
-        <h2>{{ post.title }}</h2>
-        <p>{{ post.text|truncatewords:30|safe }}</p>
-        <div class="d-flex justify-content-between">
-            <div class="row">
-                <img class='user_image' src="{{ post.author.profile.img.url }}">
-                <div class="mt-2">
-                    <span class='text-muted'>{{ post.date|date:"d E Y в H:i" }}</span>
-                    <p><b>{% trans 'Автор:' %} </b><a href='{% url "user-news" post.author %}'>{{ post.author }}</a></p>
-                </div>
+<div class="alert alert-light">
+    <h2>{{ post.title }}</h2>
+    <p>{{ post.text|truncatewords:30|safe }}</p>
+    <div class="d-flex justify-content-between">
+        <div class="row">
+            <img class='user_image' src="{{ post.author.profile.img.url }}">
+            <div class="mt-2">
+                <span class='text-muted'>{{ post.date|date:"d E Y в H:i" }}</span>
+                <p><b>{% trans 'Автор:' %} </b><a href='{% url "user-news" post.author %}'>{{ post.author }}</a></p>
             </div>
-            <div class="row align-items-center">
-                <div class="mr-3">
-                    <i class="far fa-eye"></i>
-                    {{ post.count }}
-                </div>
-                <div class="mr-3">
-                    <a class='btn btn-secondary' href="{% url 'news-detail' post.id %}">{% trans 'Читать' %}</a>
-                </div>
+        </div>
+        <div class="row align-items-center">
+            <div class="mr-3">
+                <i class="far fa-eye"></i>
+                {{ post.count }}
+            </div>
+            <div class="mr-3">
+                <a class='btn btn-secondary' href="{% url 'news-detail' post.id %}">{% trans 'Читать' %}</a>
             </div>
         </div>
     </div>
+</div>
 {% endif %}
 {% endfor %}
 {% include 'include/pagination.html' %}
 {% endblock %}
 
 {% block aside %}
+<div class="aside-form">
+    {% include 'include/search.html' %}
+    <hr>
+</div>
 <table class='table table-bordered'>
     <thead class="thead-dark">
         <tr>

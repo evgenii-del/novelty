@@ -73,7 +73,7 @@ msgstr "Delete"
 msgid "Удалить статью"
 msgstr "Delete"
 
-#: .\templates\blog\delete.html:18
+#: .\templates\blog\delete.html:18 .\templates\blog\create.html:19
 msgid "Вернуться на главную страницу"
 msgstr "Back to the main page"
 

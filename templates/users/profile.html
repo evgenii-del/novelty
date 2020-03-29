@@ -24,22 +24,26 @@
     {% if posts %}
     {% for post in posts %}
     <div class="alert alert-light">
-      <h2>{{ post.title }}</h2>
-      <p>{{ post.text|truncatewords:30 }}</p>
-      <div class="row">
-        <div>
-          <img class='user_image' src="{{ post.author.profile.img.url }}">
+        <h2>{{ post.title }}</h2>
+        <p>{{ post.text|truncatewords:30|safe }}</p>
+        <div class="d-flex justify-content-between">
+            <div class="row">
+                <img class='user_image' src="{{ post.author.profile.img.url }}">
+                <div class="mt-2">
+                    <span class='text-muted'>{{ post.date|date:"d E Y в H:i" }}</span>
+                    <p><b>{% trans 'Автор:' %} </b><a href='{% url "user-news" post.author %}'>{{ post.author }}</a></p>
+                </div>
+            </div>
+            <div class="row align-items-center">
+                <div class="mr-3">
+                    <i class="far fa-eye"></i>
+                    {{ post.count }}
+                </div>
+                <div class="mr-3">
+                    <a class='btn btn-secondary' href="{% url 'news-detail' post.id %}">{% trans 'Читать' %}</a>
+                </div>
+            </div>
         </div>
-        <div class="row">
-          <div class='mt-2 col-8'>
-            <span class='text-muted'>{{ post.date|date:"d E Y в H:i" }}</span>
-            <p><b>{% trans 'Автор' %}: </b><a href='{% url "user-news" post.author %}'>{{ post.author }}</a></p>
-          </div>
-          <div class="col-4 mt-3">
-            <a class='btn btn-outline-secondary' href="{% url 'news-detail' post.id %}">{% trans 'Читать' %}</a>
-          </div>
-        </div>
-      </div>
     </div>
     {% endfor %}
     {% else %}
@@ -49,6 +53,17 @@
       </div>
     {% endif %}
   </div>
+  <div class="container mt-3 mobile-aside">
+      <div class="d-flex justify-content-around mt-3">
+        <a href="{% url 'news-create' %}" class='btn btn-outline-secondary'>{% trans 'Добавить статью' %}</a>
+        <a href="{% url 'change' %}" class='btn btn-outline-secondary'>{% trans 'Редактировать профиль' %}</a>
+        <!-- <a href="#" class='btn btn-outline-secondary mt-3'>{% trans 'Избранное' %}</a> -->
+      </div>
+      <hr>
+      <div class="mt-3">
+          {% include 'include/last_news.html' %}
+      </div>
+  </div>
 {% endblock %}
 
 
@@ -56,7 +71,7 @@
 <div class="row">
   <a href="{% url 'news-create' %}" class='btn btn-outline-secondary'>{% trans 'Добавить статью' %}</a>
   <a href="{% url 'change' %}" class='btn btn-outline-secondary mt-3'>{% trans 'Редактировать профиль' %}</a>
-  <a href="#" class='btn btn-outline-secondary mt-3'>{% trans 'Избранное' %}</a>
+  <!-- <a href="#" class='btn btn-outline-secondary mt-3'>{% trans 'Избранное' %}</a> -->
 </div>
 <div class="mt-3">
     {% include 'include/last_news.html' %}

@@ -9,16 +9,21 @@
 {% endblock %}
 
 {% block content %}
-  <div class="form-section">
+<div class="form-section">
     <h2>{% trans 'Добавление новой статьи' %}</h2>
-    <form method="POST">
-      {% csrf_token %}
-      {{ form|crispy }}
-      <div class="text-right">
-          <button class="btn btn-outline-secondary" type="submit">{% trans 'Добавить' %}</button>
-      </div>
+    <form method="POST" enctype="multipart/form-data">
+        {% csrf_token %}
+        {{ form|crispy }}
+        <div class="d-flex justify-content-between">
+            <div>
+                <a href="{% url 'blog-home' %}">{% trans 'Вернуться на главную страницу' %}</a>
+            </div>
+            <div>
+                <button class="btn btn-outline-secondary" type="submit">{% trans 'Добавить' %}</button>
+            </div>
+        </div>
     </form>
-  </div>
+</div>
 {% endblock %}
 
 {% block aside %}
