@@ -1,4 +1,4 @@
-from django.shortcuts import render, get_object_or_404, redirect
+from django.shortcuts import render, get_object_or_404, redirect, HttpResponseRedirect
 from django.contrib.auth.models import User
 from django.db.models import Q, F
 from django.views.generic import (
@@ -7,10 +7,12 @@ from django.views.generic import (
     DetailView,
     CreateView,
     UpdateView,
-    DeleteView
+    DeleteView,
+    TemplateView
 )
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 from blog.models import News, Rate
+from django.contrib import messages
 from blog.forms import ReviewForm
 
 
@@ -48,8 +50,20 @@ class UserAllNewsView(ListView):
 
 def post_detail(request, pk):
     post = get_object_or_404(News, pk=pk)
+    is_favourite = False
+    if post.favourite.filter(id=request.user.id).exists():
+        is_favourite = True
+        messages.success(request, 'Статья успешно добавлена/удалена из избранного')
     News.objects.filter(pk=pk).update(count=F('count')+1)
-    return render(request, 'blog/detail.html', {'object': post})
+    return render(request, 'blog/detail.html', {'object': post, 'is_favourite': is_favourite})
+
+def favourite_post(request, pk):
+    post = get_object_or_404(News, id=pk)
+    if post.favourite.filter(id=request.user.id).exists():
+        post.favourite.remove(request.user)
+    else:
+        post.favourite.add(request.user)
+    return HttpResponseRedirect(post.get_absolute_url())
 
 class UpdateNewsView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
     model = News
@@ -97,6 +111,5 @@ class AddReview(View):
             form.save()
         return redirect('/')
 
-
-def contacts(request):
-    return render(request, 'blog/contacts.html')
+class Contacts(TemplateView):
+    template_name = 'blog/contacts.html'

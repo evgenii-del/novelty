@@ -21,9 +21,13 @@ def register(request):
 @login_required
 def profile(request):
     posts = News.objects.filter(author=request.user)
+    count_of_visits = 0
+    for post in posts:
+        count_of_visits += post.count
     context = {
         'posts': posts,
         'count_of_posts': len(posts),
+        'count_of_visits': count_of_visits
     }
 
     return render(request, 'users/profile.html', context)
@@ -49,3 +53,9 @@ def change(request):
     }
 
     return render(request, 'users/profile_change.html', data)
+
+@login_required
+def favourite_list(request):
+    user = request.user
+    favourite_list = user.favourite.all().order_by('-date')
+    return render(request, 'users/favourite_list.html', {'favourite_list': favourite_list})

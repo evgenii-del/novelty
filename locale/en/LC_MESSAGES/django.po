@@ -235,7 +235,8 @@ msgstr "Add post"
 msgid "Редактировать профиль"
 msgstr "Edit profile"
 
-#: .\templates\users\profile.html:59
+#: .\templates\users\profile.html:59 .\templates\users\favourite_post.html:6
+#: .\templates\users\favourite_post.html:11 .\templates\users\favourite_post.html:74
 msgid "Избранное"
 msgstr "Favotite"
 

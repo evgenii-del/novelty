@@ -10,13 +10,28 @@
 <div class="alert alert-light">
   <h1>{{ object.title }}</h1>
   <p class='information'>{{ object.text|safe }}</p>
-  <div class="row">
-    <div>
-      <img class='user_image' src="{{ object.author.profile.img.url }}">
+  <div class="d-flex justify-content-between align-items-center">
+    <div class="row">
+        <div>
+          <img class='user_image' src="{{ object.author.profile.img.url }}">
+        </div>
+        <div class='mt-2'>
+          <span class='text-muted'>{{ object.date|date:"d E Y в H:i" }}</span>
+          <p><b>Автор: </b><a href='{% url "user-news" object.author %}'>{{ object.author }}</a></p>
+        </div>
     </div>
-    <div class='mt-2'>
-      <span class='text-muted'>{{ object.date|date:"d E Y в H:i" }}</span>
-      <p><b>Автор: </b><a href='{% url "user-news" object.author %}'>{{ object.author }}</a></p>
+    <div>
+        {% if user.is_authenticated %}
+            {% if is_favourite %}
+                <a href="{% url 'favourite-post' object.id %}">
+                    <i class="fas fa-heart"></i>
+                </a>
+            {% else %}
+                <a href="{% url 'favourite-post' object.id %}">
+                    <i class="far fa-heart"></i>
+                </a>
+            {% endif %}
+        {% endif %}
     </div>
   </div>
   {% if object.author == user %}

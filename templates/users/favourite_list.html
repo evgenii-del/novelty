@@ -1,0 +1,79 @@
+{% extends 'wrapper.html' %}
+{% load crispy_forms_tags %}
+{% load i18n %}
+
+{% block title %}
+ {% trans 'Избранное' %}
+{% endblock %}
+
+{% block content %}
+    <div class="">
+        <h2>{% trans 'Избранное' %}:</h2>
+        {% for post in favourite_list %}
+        {% if post.img %}
+        <div class="d-flex card-div">
+            <div class="col-4 post-image-div p-0">
+                <img src="{{ post.img.url }}">
+            </div>
+            <div class="col-8 p-3 d-flex flex-column justify-content-between">
+                <div class="">
+                    <h5>{{ post.title }}</h5>
+                    <p>{{ post.text|truncatewords:30|safe }}</p>
+                </div>
+                <div class="d-flex justify-content-between align-items-center">
+                    <div class="row">
+                        <img class='user_image' src="{{ post.author.profile.img.url }}">
+                        <div class="mt-2">
+                            <span class='text-muted'>{{ post.date|date:"d E Y в H:i" }}</span>
+                            <p><b>{% trans 'Автор' %}: </b><a href='{% url "user-news" post.author %}'>{{ post.author }}</a></p>
+                        </div>
+                    </div>
+                    <div class="d-flex align-items-center">
+                        <div class="mr-3">
+                            <i class="far fa-eye"></i>
+                            {{ post.count }}
+                        </div>
+                        <a class='btn btn-secondary' href="{% url 'news-detail' post.id %}">{% trans 'Читать' %}</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        {% else %}
+        <div class="alert alert-light">
+            <h2>{{ post.title }}</h2>
+            <p>{{ post.text|truncatewords:30|safe }}</p>
+            <div class="d-flex justify-content-between">
+                <div class="row">
+                    <img class='user_image' src="{{ post.author.profile.img.url }}">
+                    <div class="mt-2">
+                        <span class='text-muted'>{{ post.date|date:"d E Y в H:i" }}</span>
+                        <p><b>{% trans 'Автор:' %} </b><a href='{% url "user-news" post.author %}'>{{ post.author }}</a></p>
+                    </div>
+                </div>
+                <div class="row align-items-center">
+                    <div class="mr-3">
+                        <i class="far fa-eye"></i>
+                        {{ post.count }}
+                    </div>
+                    <div class="mr-3">
+                        <a class='btn btn-secondary' href="{% url 'news-detail' post.id %}">{% trans 'Читать' %}</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        {% endif %}
+        {% endfor %}
+    </div>
+{% endblock %}
+
+
+{% block aside %}
+<div class="row">
+  <a href="{% url 'news-create' %}" class='btn btn-outline-secondary'>{% trans 'Добавить статью' %}</a>
+  <a href="{% url 'change' %}" class='btn btn-outline-secondary mt-3'>{% trans 'Редактировать профиль' %}</a>
+  <a href="{% url 'change' %}" class='btn btn-outline-secondary mt-3'>{% trans 'Избранное' %}</a>
+</div>
+<div class="mt-3">
+    {% include 'include/last_news.html' %}
+</div>
+{% endblock %}

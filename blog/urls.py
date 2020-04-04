@@ -7,8 +7,9 @@ urlpatterns = [
     path('user/<str:username>/', views.UserAllNewsView.as_view(), name='user-news'),
     path('blog/<int:pk>/update/', views.UpdateNewsView.as_view(), name='news-update'),
     path('blog/<int:pk>/delete/', views.DeleteNewsView.as_view(), name='news-delete'),
+    path('blog/<int:pk>/favourite/', views.favourite_post, name='favourite-post'),
     path('profile/create/', views.CreateNewsView.as_view(), name='news-create'),
     path('blog/<int:pk>/', views.post_detail, name='news-detail'),
     path('blog/review/<int:pk>/', views.AddReview.as_view(), name='review'),
-    path('contacts/', views.contacts, name='blog-contacts'),
+    path('contacts/', views.Contacts.as_view(), name='blog-contacts'),
 ]
