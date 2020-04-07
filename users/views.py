@@ -4,6 +4,7 @@ from .forms import UserOurRegistrations, ProfileImage, UserUpdateForm
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from blog.models import News
+from users.models import Profile
 
 
 def register(request):
@@ -21,13 +22,19 @@ def register(request):
 @login_required
 def profile(request):
     posts = News.objects.filter(author=request.user)
+    profile = Profile.objects.get(user=request.user)
+    friends = profile.friends.all()
     count_of_visits = 0
+    count_of_comments = 0
     for post in posts:
         count_of_visits += post.count
+        count_of_comments += post.review.count()
     context = {
         'posts': posts,
         'count_of_posts': len(posts),
-        'count_of_visits': count_of_visits
+        'count_of_visits': count_of_visits,
+        'count_of_comments': count_of_comments,
+        'friends': friends
     }
 
     return render(request, 'users/profile.html', context)

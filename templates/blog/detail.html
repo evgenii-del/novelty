@@ -52,15 +52,15 @@
             </div>
         </form>
     </div>
-    {% if object.review_set.all %}
+    {% if object.review.all %}
         <hr>
         <div class="p-2">
-            {% for review in object.review_set.all %}
-            <div class="row align-items-center p-1">
-              <div>
-                  <a href="{% url 'user-news' review.user %}">{{ review.user }}: </a><span>{{ review.text }}</span>
-              </div>
-            </div>
+            {% for review in object.review.all %}
+                <div class="row align-items-center p-1">
+                  <div>
+                      <a href="{% url 'user-news' review.user %}">{{ review.user }}: </a><span>{{ review.text }}</span>
+                  </div>
+                </div>
             {% endfor %}
         </div>
     {% endif %}

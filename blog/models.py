@@ -22,7 +22,7 @@ class News(models.Model):
 
 class Review(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
-    post = models.ForeignKey(News, on_delete=models.CASCADE)
+    post = models.ForeignKey(News, related_name='review', on_delete=models.CASCADE)
     text = models.TextField()
     date = models.DateTimeField(default=timezone.now)
 
