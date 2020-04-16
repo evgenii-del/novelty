@@ -6,7 +6,7 @@
 {% endblock %}
 
 {% block content %}
-<div class="form-section">
+<div class="form-section contact-div">
   <form action="{% url 'feedback-view' %}" method="POST">
     {% csrf_token %}
     <div class="form-group">

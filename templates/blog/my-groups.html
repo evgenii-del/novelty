@@ -3,24 +3,10 @@
 
 
 {% block title %}
-{% trans 'Все статьи автора' %} "{{ view.kwargs.username }}"
+Мои группы
 {% endblock %}
 
 {% block content %}
-<h2 class='mb-3'>{% trans 'Все статьи автора' %}: "{{ view.kwargs.username }}"</h2>
-<div class="d-flex justify-content-between">
-    <h4 class='mb-3'>{% trans 'Количество статей' %}: {{ page_obj.paginator.count }}</h4>
-    <div class="mb-3">
-        {% if user == owner %}
-        {% else %}
-            {% if user.profile in owner.friend.all %}
-                <a class="btn btn-danger" href="{% url 'change-friend' username=view.kwargs.username operation='del' %}">Отписаться</a>
-            {% else %}
-                <a class="btn btn-success" href="{% url 'change-friend' username=view.kwargs.username operation='add' %}">Подписаться</a>
-            {% endif %}
-        {% endif %}
-    </div>
-</div>
 {% for post in posts %}
 {% if post.img %}
 <div class="d-flex card-div">
@@ -75,7 +61,6 @@
 </div>
 {% endif %}
 {% endfor %}
-{% include 'include/pagination.html' %}
 {% endblock %}
 
 

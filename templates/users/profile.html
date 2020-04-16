@@ -3,20 +3,23 @@
 {% load i18n %}
 
 {% block title %}
- {% trans 'Личный кабинет' %}
+{% trans 'Личный кабинет' %}
 {% endblock %}
 
 {% block content %}
-  <div class="form-section">
+<div class="form-section">
     <h2>{% trans 'Личный кабинет' %} {{ user.username }}</h2>
     <div class="media text-muted pt-3 mb-3">
-      <img class='rounded mr-2' style='width: 64px; height: 64px;' src="{{ user.profile.img.url }}">
-      <p class='media-body pb-3 mb-0 lh-125 border-bottom border-gray'>
-        <strong class='d-block text-gray-dark'>@{{ user.username }}</strong>
-        <b>Email:</b> {{ user.email }}
-      </p>
+        <img class='rounded mr-2' style='width: 64px; height: 64px;' src="{{ user.profile.img.url }}">
+        <p class='media-body pb-3 mb-0 lh-125 border-bottom border-gray'>
+            <strong class='d-block text-gray-dark'>@{{ user.username }}</strong>
+            <b>Email:</b> {{ user.email }}
+        </p>
     </div>
     <div class="d-flex justify-content-around">
+        <div class="profile-count-of-posts">
+            <p><i class="far fa-user-circle"></i> {{ subscribers }}</p>
+        </div>
         <div class="profile-count-of-posts">
             <p><i class="far fa-comment"></i> {{ count_of_comments }}</p>
         </div>
@@ -42,10 +45,10 @@
             </div>
             <div class="row align-items-center">
                 {% if post.review.count %}
-                    <div class="mr-2">
-                        <i class="far fa-comment"></i>
-                        {{ post.review.count }}
-                    </div>
+                <div class="mr-2">
+                    <i class="far fa-comment"></i>
+                    {{ post.review.count }}
+                </div>
                 {% endif %}
                 <div class="mr-3">
                     <i class="far fa-eye"></i>
@@ -59,37 +62,64 @@
     </div>
     {% endfor %}
     {% else %}
-      <div style='text-align:center;' class="alert alert-light p-5">
+    <div style='text-align:center;' class="alert alert-light p-5">
         <h3>{% trans 'Тут будут отображаться ваши посты' %}</h3>
         <a href="{% url 'news-create' %}" class='btn btn-outline-secondary mt-4'>{% trans 'Добавить пост' %}</a>
-      </div>
+    </div>
     {% endif %}
-  </div>
-  <div class="container mt-3 mobile-aside">
-      <div class="d-flex justify-content-around mt-3">
+</div>
+<div class="container mt-3 mobile-aside">
+    <div class="d-flex justify-content-around mt-3">
         <a href="{% url 'news-create' %}" class='btn btn-outline-secondary'>{% trans 'Добавить статью' %}</a>
         <a href="{% url 'change' %}" class='btn btn-outline-secondary'>{% trans 'Редактировать профиль' %}</a>
         <a href="{% url 'favourite' %}" class='btn btn-outline-secondary mt-3'>{% trans 'Избранное' %}</a>
-      </div>
-      <hr>
-      <div class="mt-3">
-          {% include 'include/last_news.html' %}
-      </div>
-  </div>
+    </div>
+    <hr>
+    <div class="mt-3">
+        {% include 'include/last_news.html' %}
+    </div>
+</div>
 {% endblock %}
 
 
 {% block aside %}
 <div class="row">
-  <a href="{% url 'news-create' %}" class='btn btn-outline-secondary'>{% trans 'Добавить статью' %}</a>
-  <a href="{% url 'change' %}" class='btn btn-outline-secondary mt-3'>{% trans 'Редактировать профиль' %}</a>
-  <a href="{% url 'favourite' %}" class='btn btn-outline-secondary mt-3'>{% trans 'Избранное' %}</a>
+    <a href="{% url 'news-create' %}" class='btn btn-outline-secondary'>{% trans 'Добавить статью' %}</a>
+    <a href="{% url 'change' %}" class='btn btn-outline-secondary mt-3'>{% trans 'Редактировать профиль' %}</a>
+    <a href="{% url 'favourite' %}" class='btn btn-outline-secondary mt-3'>{% trans 'Избранное' %}</a>
 </div>
-<div class="row">
-    {% for friend in friends %}
-        <a href="{% url 'user-news' friend.username %}">{{ friend.username }}</a>
-    {% endfor %}
+{% if friends %}
+<div class='row'>
+    <a class="btn btn-outline-secondary mt-3" data-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample">Подписки</a>
+    <div class="collapse mt-2" id="collapseExample">
+        {% for friend in friends %}
+        <a href="{% url 'user-news' friend.username %}">
+        <div class="d-flex align-items-center follower">
+            <img class='user_image' src="{{ friend.profile.img.url }}">
+            <p class='mt-3'>{{ friend.username }}</p>
+        </div>
+        </a>
+        <hr>
+        {% endfor %}
+    </div>
 </div>
+{% endif %}
+{% if user.friend.all %}
+<div class='row'>
+    <a class="btn btn-outline-secondary mt-3" data-toggle="collapse" href="#collapseExample1" role="button" aria-expanded="false" aria-controls="collapseExample1">Подписчики</a>
+    <div class="collapse mt-2" id="collapseExample1">
+        {% for friend in user.friend.all %}
+        <a href="{% url 'user-news' friend.user.username %}">
+        <div class="d-flex align-items-center follower">
+            <img class='user_image' src="{{ friend.user.profile.img.url }}">
+            <p class='mt-3'>{{ friend.user.username }}</p>
+        </div>
+        </a>
+        <hr>
+        {% endfor %}
+    </div>
+</div>
+{% endif %}
 <div class="mt-3">
     {% include 'include/last_news.html' %}
 </div>

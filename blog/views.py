@@ -1,5 +1,6 @@
 from django.shortcuts import render, get_object_or_404, redirect, HttpResponseRedirect
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
+from django.contrib.auth.decorators import login_required
 from django.db.models import Q, F, Count
 from django.contrib import messages
 from blog.forms import ReviewForm
@@ -38,22 +39,34 @@ class ShowNewsView(ListView):
             object_list = News.objects.all()
         return object_list.order_by('-date')
 
+class GroupListView(ListView):
+    model = News
+    template_name = 'blog/my-groups.html'
+    context_object_name = 'posts'
+    paginate_by = 10
+
+    def get_queryset(self):
+        user = self.request.user
+        friends = user.profile.friends.all()
+        return News.objects.filter(author__in=friends).order_by('-date')
+
 class UserAllNewsView(ListView):
     model = News
     template_name = 'blog/user_news.html'
-    context_object_name = 'news'
+    context_object_name = 'posts'
     paginate_by = 10
 
     def get_context_data(self, *args, **kwargs):
         context = super().get_context_data(*args, **kwargs)
         user = get_object_or_404(User, username=self.kwargs.get('username'))
-        context['test'] = user.friend.all()
+        context['owner'] = user
         return context
 
     def get_queryset(self):
         user = get_object_or_404(User, username=self.kwargs.get('username'))
         return News.objects.filter(author=user).order_by('-date')
 
+@login_required
 def change_friend(request, operation, username):
     new_friend = User.objects.get(username=username)
     if operation == 'add':
@@ -126,9 +139,3 @@ class AddReview(View):
 
 class Contacts(TemplateView):
     template_name = 'blog/contacts.html'
-
-class GroupListView(ListView):
-    model = News
-    template_name = 'blog/my_group.html'
-    context_object_name = 'news'
-    paginate_by = 10

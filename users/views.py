@@ -21,8 +21,9 @@ def register(request):
 
 @login_required
 def profile(request):
-    posts = News.objects.filter(author=request.user)
-    profile = Profile.objects.get(user=request.user)
+    user = request.user
+    posts = News.objects.filter(author=user)
+    profile = Profile.objects.get(user=user)
     friends = profile.friends.all()
     count_of_visits = 0
     count_of_comments = 0
@@ -34,7 +35,8 @@ def profile(request):
         'count_of_posts': len(posts),
         'count_of_visits': count_of_visits,
         'count_of_comments': count_of_comments,
-        'friends': friends
+        'friends': friends,
+        'subscribers': user.friend.all().count()
     }
 
     return render(request, 'users/profile.html', context)

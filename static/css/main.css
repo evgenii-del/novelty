@@ -19,12 +19,18 @@ textarea {
     width: 100%;
     padding: 5px;
 }
+a {
+    text-decoration: none!important;
+}
+p {
+    font-family: 'Roboto Mono', monospace;
+}
 .fa-heart {
     color: #FF0000;
     font-size: 25px;
 }
-.content-div {
-    min-height: 450px;
+.contact-div {
+    height: 100vh;
 }
 .search-div {
     display: none;
@@ -107,6 +113,7 @@ h5 {
 .post-image-div img:hover {
     transform: scale(1.2);
 }
+
 aside img {
     max-height: 400px;
     width: 100%;
@@ -141,6 +148,16 @@ aside img {
 }
 .tr-hover:hover {
     background-color: #fafafa;
+}
+#collapseExample,
+#collapseExample1 {
+    width: 100%;
+}
+.follower {
+    padding: 5px;
+}
+.follower:hover {
+    background-color: #DCDCDC;
 }
 footer {
     padding: 30px;
