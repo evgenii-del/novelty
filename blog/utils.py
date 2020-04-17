@@ -1,5 +1,4 @@
 from novelty.celery import app
-from blog.utils import func
 from blog.models import Rate
 from bs4 import BeautifulSoup as bs
 import requests

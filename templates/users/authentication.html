@@ -3,22 +3,24 @@
 {% load i18n %}
 
 {% block title %}
- {% trans 'Авторизация на сайте' %}
+{% trans 'Авторизация на сайте' %}
 {% endblock %}
 
 {% block content %}
-  <div class="form-section">
-    <h2>{% trans 'Авторизация на сайте' %}</h2>
-    <form method="POST">
-      {% csrf_token %}
-      {{ form|crispy }}
-      <div class="text-right">
-          <button class="btn btn-outline-secondary" type="submit">{% trans 'Войти' %}</button>
-      </div>
-    </form>
-    <hr>
-    <p class="text-center">{% trans 'Забыли пароль' %}? <a href="{% url 'pass-reset' %}">{% trans 'Восстановить пароль' %}</a></p>
-  </div>
+<div class="full-screen-div">
+    <div class="form-section">
+        <h2>{% trans 'Авторизация на сайте' %}</h2>
+        <form method="POST">
+            {% csrf_token %}
+            {{ form|crispy }}
+            <div class="text-right">
+                <button class="btn btn-outline-secondary" type="submit">{% trans 'Войти' %}</button>
+            </div>
+        </form>
+        <hr>
+        <p class="text-center">{% trans 'Забыли пароль' %}? <a href="{% url 'pass-reset' %}">{% trans 'Восстановить пароль' %}</a></p>
+    </div>
+</div>
 {% endblock %}
 
 
@@ -26,10 +28,10 @@
 <h3>Раритетные авто</h3>
 <img src="https://images.pexels.com/photos/1841120/pexels-photo-1841120.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500" class="img-thumbnail mb-2">
 <p>Able rent long in do we. Hard do me sigh with west same lady.
-Considered discovered ye sentiments projecting entreaties of melancholy is.
-An concluded sportsman offending so provision mr education.
-An stairs as be lovers uneasy. Estate was tended te</p>
-<a href="#">
-  <button class="btn btn-warning">Просмотреть</button>
-</a>
-{% endblock %}
+    Considered discovered ye sentiments projecting entreaties of melancholy is.
+    An concluded sportsman offending so provision mr education.
+    An stairs as be lovers uneasy. Estate was tended te</p>
+    <a href="#">
+        <button class="btn btn-warning">Просмотреть</button>
+    </a>
+    {% endblock %}

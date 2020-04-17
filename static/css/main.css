@@ -22,15 +22,16 @@ textarea {
 a {
     text-decoration: none!important;
 }
-p {
-    font-family: 'Roboto Mono', monospace;
+.comment-text {
+    width: 100%;
+    overflow-wrap: break-word;
 }
 .fa-heart {
     color: #FF0000;
     font-size: 25px;
 }
-.contact-div {
-    height: 100vh;
+.full-screen-div {
+    height: 90vh;
 }
 .search-div {
     display: none;
@@ -155,6 +156,7 @@ aside img {
 }
 .follower {
     padding: 5px;
+    border-bottom: 1px solid gray;
 }
 .follower:hover {
     background-color: #DCDCDC;
@@ -175,7 +177,9 @@ footer a {
 footer a:hover {
     color: #79b0e2;
 }
-
+.card-info p img {
+    width: 100%!important;
+}
 @media only screen and (max-width: 1000px) {
     .aside-form {
         display: none;

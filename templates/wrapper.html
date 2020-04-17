@@ -24,9 +24,11 @@
                 <li class="nav-item">
                     <a class="btn btn-outline-secondary header-btn mr-2" href="{% url 'blog-contacts' %}">{% trans 'Контакты' %}</a>
                 </li>
+                {% if user.is_authenticated %}
                 <li class="nav-item">
                     <a class="btn btn-outline-secondary header-btn mr-2" href="{% url 'my-groups' %}">Группы</a>
                 </li>
+                {% endif %}
             </ul>
             <div class="my-lg-0">
                 {% if user.is_authenticated %}

@@ -83,6 +83,7 @@ def post_detail(request, pk):
     News.objects.filter(pk=pk).update(count=F('count')+1)
     return render(request, 'blog/detail.html', {'object': post, 'is_favourite': is_favourite})
 
+@login_required
 def favourite_post(request, pk):
     post = get_object_or_404(News, id=pk)
     if post.favourite.filter(id=request.user.id).exists():

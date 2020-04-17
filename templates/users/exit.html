@@ -4,14 +4,17 @@
 
 
 {% block title %}
- {% trans 'Выход' %}
+{% trans 'Выход' %}
 {% endblock %}
 
 {% block content %}
-  <div class="form-section">
-    <h2>{% trans 'Вы вышли с аккаунта' %}</h2>
-    <a href="{% url 'auth' %}">{% trans 'Войти снова' %}</a>
-  </div>
+<div class="full-screen-div">
+    <div class="form-section">
+        <h2>{% trans 'Вы вышли с аккаунта' %}</h2>
+        <a href="{% url 'auth' %}">{% trans 'Войти снова' %}</a>
+    </div>
+</div>
+
 {% endblock %}
 
 
@@ -19,10 +22,10 @@
 <h3>Раритетные авто</h3>
 <img src="https://images.pexels.com/photos/1841120/pexels-photo-1841120.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500" class="img-thumbnail mb-2">
 <p>Able rent long in do we. Hard do me sigh with west same lady.
-Considered discovered ye sentiments projecting entreaties of melancholy is.
-An concluded sportsman offending so provision mr education.
-An stairs as be lovers uneasy. Estate was tended te</p>
-<a href="#">
-  <button class="btn btn-warning">Просмотреть</button>
-</a>
-{% endblock %}
+    Considered discovered ye sentiments projecting entreaties of melancholy is.
+    An concluded sportsman offending so provision mr education.
+    An stairs as be lovers uneasy. Estate was tended te</p>
+    <a href="#">
+        <button class="btn btn-warning">Просмотреть</button>
+    </a>
+    {% endblock %}

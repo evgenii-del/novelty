@@ -6,30 +6,32 @@
 {% endblock %}
 
 {% block content %}
-<div class="form-section contact-div">
-  <form action="{% url 'feedback-view' %}" method="POST">
-    {% csrf_token %}
-    <div class="form-group">
-      <label for="exampleInputName1">{% trans 'Ваше имя' %}:</label>
-      <input name="name" type="text" class="form-control" id="exampleInputName1">
+<div class="full-screen-div">
+    <div class="form-section">
+      <form action="{% url 'feedback-view' %}" method="POST">
+        {% csrf_token %}
+        <div class="form-group">
+          <label for="exampleInputName1">{% trans 'Ваше имя' %}:</label>
+          <input name="name" type="text" class="form-control" id="exampleInputName1">
+        </div>
+        <div class="form-group">
+          <label for="exampleInputEmail1">{% trans 'Ваша почта' %}:</label>
+          <input name="email" type="email" class="form-control" id="exampleInputEmail1">
+        </div>
+        <div class="form-group">
+          <label for="exampleInputPhone1">{% trans 'Ваш номер' %}:</label>
+          <input name="phone" type="text" class="form-control" id="exampleInputPhone1">
+        </div>
+        <div class="form-group">
+          <label for="exampleFormControlTextarea1">{% trans 'Отзыв' %}:</label>
+          <textarea name="description" class="form-control" id="exampleFormControlTextarea1" rows="5"></textarea>
+          <small id="exampleFormControlTextarea1" class="form-text text-muted">{% trans 'Коротко опишите свою проблему' %}</small>
+        </div>
+        <div class="text-right">
+            <button type="submit" class="btn btn-outline-secondary">{% trans 'Отправить' %}</button>
+        </div>
+      </form>
     </div>
-    <div class="form-group">
-      <label for="exampleInputEmail1">{% trans 'Ваша почта' %}:</label>
-      <input name="email" type="email" class="form-control" id="exampleInputEmail1">
-    </div>
-    <div class="form-group">
-      <label for="exampleInputPhone1">{% trans 'Ваш номер' %}:</label>
-      <input name="phone" type="text" class="form-control" id="exampleInputPhone1">
-    </div>
-    <div class="form-group">
-      <label for="exampleFormControlTextarea1">{% trans 'Отзыв' %}:</label>
-      <textarea name="description" class="form-control" id="exampleFormControlTextarea1" rows="5"></textarea>
-      <small id="exampleFormControlTextarea1" class="form-text text-muted">{% trans 'Коротко опишите свою проблему' %}</small>
-    </div>
-    <div class="text-right">
-        <button type="submit" class="btn btn-outline-secondary">{% trans 'Отправить' %}</button>
-    </div>
-  </form>
 </div>
 {% endblock %}
 

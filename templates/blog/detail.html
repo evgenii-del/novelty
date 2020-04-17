@@ -7,38 +7,38 @@
 {% endblock %}
 
 {% block content %}
-<div class="alert alert-light">
-  <h1>{{ object.title }}</h1>
-  <p class='information'>{{ object.text|safe }}</p>
-  <div class="d-flex justify-content-between align-items-center">
-    <div class="row">
+<div class="alert alert-light card-info">
+    <h1>{{ object.title }}</h1>
+    <p class='information'>{{ object.text|safe }}</p>
+    <div class="d-flex justify-content-between align-items-center">
+        <div class="row">
+            <div>
+                <img class='user_image' src="{{ object.author.profile.img.url }}">
+            </div>
+            <div class='mt-2'>
+                <span class='text-muted'>{{ object.date|date:"d E Y в H:i" }}</span>
+                <p><b>Автор: </b><a href='{% url "user-news" object.author %}'>{{ object.author }}</a></p>
+            </div>
+        </div>
         <div>
-          <img class='user_image' src="{{ object.author.profile.img.url }}">
-        </div>
-        <div class='mt-2'>
-          <span class='text-muted'>{{ object.date|date:"d E Y в H:i" }}</span>
-          <p><b>Автор: </b><a href='{% url "user-news" object.author %}'>{{ object.author }}</a></p>
-        </div>
-    </div>
-    <div>
-        {% if user.is_authenticated %}
+            {% if user.is_authenticated %}
             {% if is_favourite %}
-                <a href="{% url 'favourite-post' object.id %}">
-                    <i class="fas fa-heart"></i>
-                </a>
+            <a href="{% url 'favourite-post' object.id %}">
+                <i class="fas fa-heart"></i>
+            </a>
             {% else %}
-                <a href="{% url 'favourite-post' object.id %}">
-                    <i class="far fa-heart"></i>
-                </a>
+            <a href="{% url 'favourite-post' object.id %}">
+                <i class="far fa-heart"></i>
+            </a>
             {% endif %}
-        {% endif %}
+            {% endif %}
+        </div>
     </div>
-  </div>
-  {% if object.author == user %}
+    {% if object.author == user %}
     <hr>
     <a href="{% url 'news-delete' object.id %}" class='btn btn-outline-danger mr-2'>{% trans 'Удалить' %}</a>
     <a href="{% url 'news-update' object.id %}" class='btn btn-outline-info mr-2'>{% trans 'Редактировать' %}</a>
-  {% endif %}
+    {% endif %}
 </div>
 <div class="bg-white p-3 comment-div">
     <div class="p-1">
@@ -53,16 +53,16 @@
         </form>
     </div>
     {% if object.review.all %}
-        <hr>
-        <div class="p-2">
-            {% for review in object.review.all %}
-                <div class="row align-items-center p-1">
-                  <div>
-                      <a href="{% url 'user-news' review.user %}">{{ review.user }}: </a><span>{{ review.text }}</span>
-                  </div>
-                </div>
-            {% endfor %}
+    <hr>
+    <div class="p-2">
+        {% for review in object.review.all %}
+        <div class="row align-items-center p-1">
+            <div class="comment-text">
+                <a href="{% url 'user-news' review.user %}">{{ review.user }}: </a><span>{{ review.text }}</span>
+            </div>
         </div>
+        {% endfor %}
+    </div>
     {% endif %}
 </div>
 {% endblock %}
@@ -71,10 +71,10 @@
 <h3>Интересные факты</h3>
 <img src="https://images.pexels.com/photos/1927314/pexels-photo-1927314.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500" class="img-thumbnail mb-2">
 <p>Able rent long in do we. Hard do me sigh with west same lady.
-  Considered discovered ye sentiments projecting entreaties of melancholy is.
-  An concluded sportsman offending so provision mr education.
-  An stairs as be lovers uneasy. Estate was tended te</p>
-  <a href="#">
-    <button class="btn btn-warning">Просмотреть</button>
-  </a>
-{% endblock %}
+    Considered discovered ye sentiments projecting entreaties of melancholy is.
+    An concluded sportsman offending so provision mr education.
+    An stairs as be lovers uneasy. Estate was tended te</p>
+    <a href="#">
+        <button class="btn btn-warning">Просмотреть</button>
+    </a>
+    {% endblock %}
